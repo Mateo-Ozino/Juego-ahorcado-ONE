@@ -15,4 +15,8 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
+#seccionJuego, #seccionNuevaPalabra {
+  display: none;
+}
+
 /*# sourceMappingURL=style.css.map */
