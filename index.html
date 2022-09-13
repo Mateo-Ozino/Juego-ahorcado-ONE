@@ -27,25 +27,32 @@
         </section>
         <section id="seccionJuego">
             <div>
-                <canvas id="canvas"></canvas>
+                <canvas id="canvas" width="320" height="250"></canvas>
                 <div id="letrasUsadas"></div>
                 <div id="letrasCorrectas"></div>
+                <div id="palabraCorrecta"></div>
             </div>
             <div>
                 <button id="nuevoJuego">Nuevo juego</button>
                 <button id="desistir">Desistir</button>
+                
             </div>
         </section>
         <section id="seccionNuevaPalabra">
-            <input type="text" placeholder="Ingresa una palabra" id="nuevaPalabra">
-            <div>
-                <i class="fa-solid fa-circle-info fa-xs"></i>
-                <p>Máximo 8 letras</p>
-            </div>
-            <div>
-                <button id="guardarPalabra">Guardar y empezar</button>
-                <button id="cancelar">Cancelar</button>
-            </div>
+            <section>
+                <input type="text" placeholder="Ingresa una palabra" id="nuevaPalabra">
+                <div>
+                    <i class="fa-solid fa-circle-info fa-xs"></i>
+                    <p>Máximo 8 letras</p>
+                </div>
+                <div>
+                    <button id="guardarPalabra">Guardar y empezar</button>
+                    <button id="cancelar">Cancelar</button>
+                </div>
+            </section>
+            <section>
+                <div id="contenedorPalabras"></div>
+            </section>
         </section>
     </main>
     <footer>
