@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/2236dd94c9.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Juego del ahorcado</title>
 </head>
 <body>
@@ -17,14 +17,22 @@
         </div>
     </header>
     <main>
-        <section id="seccionPrincipal">
-            <button class="boton-principal" id="iniciarJuego">Iniciar juego</button>
-            <button class="boton-secundario" id="agregarPalabra">Agregar palabra</button>
+        <section id="seccionJuego">
+            <div>
+                <canvas id="canvas" width="320" height="250"></canvas>
+                <div id="letrasUsadas"></div>
+                <div id="letrasCorrectas"></div>
+                <div id="palabraCorrecta"></div>
+            </div>
+            <div>
+                <button id="nuevoJuego">Nuevo juego</button>
+                <button id="desistir">Desistir</button>
+            </div>
         </section>
     </main>
     <footer>
         <p>Hecho por <strong>Mateo Ozino Caligaris</strong> como parte del programa <strong>Oracle ONE</strong></p>
     </footer>
-    <script src="js/index.js"></script>
+    <script src="../js/ahorcado.js"></script>
 </body>
 </html>

@@ -1,13 +1,6 @@
 const regExp = /^[a-z !ñ]+$/;
 
-//*Secciones
-const seccionPrincipal = document.querySelector('#seccionPrincipal');
 const seccionJuego = document.querySelector('#seccionJuego');
-const seccionNuevaPalabra = document.querySelector('#seccionNuevaPalabra');
-
-//*Seccion principal
-const botonIniciarJuego = document.querySelector('#iniciarJuego');
-const botonAgregarPalabra = document.querySelector('#agregarPalabra');
 
 //*Seccion juego
 const contenedorLetrasUsadas = document.querySelector('#letrasUsadas');
@@ -16,50 +9,13 @@ const contenedorPalabraCorrecta = document.querySelector('#palabraCorrecta')
 const botonNuevoJuego = document.querySelector('#nuevoJuego');
 const botonDesistir = document.querySelector('#desistir');
 
-//*Seccion nueva palabra
-const contenedorNuevaPalabra = document.querySelector('#nuevaPalabra');
-const botonGuardarPalabra = document.querySelector('#guardarPalabra');
-const botonCancelar =  document.querySelector('#cancelar')
-const contenedorPalabras =  document.querySelector('#contenedorPalabras')
-
-//*Lista inicial de palabras
-const listaPalabras = ['cuento', 'pedestal', 'monstruo', 'novela', 'mono', 'perro', 'gato', 'cafe', 'agua', 'asado', 'vestido', 'hotel', 'casa', 'mesa', 'silla'];
-
-//*Si no existe la lista en el local storage, la guardo. Esto es para inicializar la lista en cualquier dispositivo
-if (!localStorage.getItem('lista')) {
-    localStorage.setItem('lista', JSON.stringify(listaPalabras))
-}
-
-//!Event listeners
-//*Principal
-botonIniciarJuego.addEventListener('click', () => {
-    seccionPrincipal.style.display = 'none';
-    seccionJuego.style.display = 'block';
-});
-
-botonAgregarPalabra.addEventListener('click', () => {
-    seccionPrincipal.style.display = 'none';
-    seccionNuevaPalabra.style.display = 'block';
-});
-
-//*Agregar Palabra
-botonGuardarPalabra.addEventListener('click', () => {
-    nuevaPalabra = contenedorNuevaPalabra.value
-    lista = JSON.parse(localStorage.getItem('lista')).concat([nuevaPalabra.toLowerCase()])
-    localStorage.setItem('lista', JSON.stringify(lista))
-    location.reload()
-});
-
-botonCancelar.addEventListener('click', () => {
-    seccionPrincipal.style.display = 'block';
-    seccionNuevaPalabra.style.display = 'none';
-});
-
 //*Seccion juego
 botonNuevoJuego.addEventListener('click', () => {
     location.reload();
 });
-botonDesistir.addEventListener('click', pararJuego);
+botonDesistir.addEventListener('click', () => {
+    document.location.href = '../index.html'
+});
 
 //!Canvas
 const canvas = document.querySelector('#canvas');
@@ -145,7 +101,7 @@ let intentos;
 let aciertos;
 
 //*Traigo la lista de palabras del local storage
-let listaActualizada = JSON.parse(localStorage.getItem('lista'))
+let listaActualizada = JSON.parse(localStorage.getItem('lista'));
 
 //*Selector random de palabras
 const palabraRandom = () => {
@@ -154,10 +110,6 @@ const palabraRandom = () => {
 };
 
 //*Funciones del juego
-function pararJuego() {
-    location.reload()
-}
-
 function crearGuiones(palabra) {
     for (let i = 0; i < palabra.length; i++) {
         contenedorLetrasCorrectas.innerHTML += `
@@ -259,4 +211,4 @@ function juego() {
     });
 }
 
-juego();
+juego() 

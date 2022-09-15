@@ -1,4 +1,7 @@
+@import 'vars-mixins';
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 
 html {
     height: 100%;
@@ -16,33 +19,68 @@ img {
 }
 
 body {
-    display: flex;
-    flex-direction: column;
     min-height: 100%;
     background-color: #EFF1FA;
     font-family: 'Montserrat', sans-serif;
+    header {
+        margin: .5rem 0 0 .5rem;
+    }
+    main {
+        margin: 1rem;
+        #seccionPrincipal {
+            @include flex(column, center, center, 1rem);
+        }
+    }
 }
 
-header {
-    margin-top: .5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.boton-principal {
+    min-width: 160px;
+    color: #fff;
+    padding: 15px 20px 15px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    overflow: hidden;
+    border-radius: 5px;
+    border: none;
+    // background-color: #3d348b;
+    background-color: #0A3871;
+    &:after {
+        content: "\00BB";
+        position: absolute;
+        opacity: 0;
+        font-size: 20px;
+        line-height: 40px;
+        top: 3.5px;
+        right: -20px;
+        transition: 0.4s;
+    }
+    &:hover {
+        border-radius: 5px;
+        padding-right: 24px;
+        padding-left: 8px;
+    }
+    &:hover:after {
+        opacity: 1;
+        right: 10px;
+    }
 }
 
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    margin: 1rem;
+.boton-secundario {
+    @extend .boton-principal;
+    width: 200px;
+    background-color: transparent;
+    border: solid 1px #0A3871;
+    color: #0A3871;
+    &:after {
+        top: 3.5px;
+    }
 }
 
 .hidden {
-    display: none;
-}
-
-#seccionJuego, #seccionNuevaPalabra {
     display: none;
 }
 
@@ -68,7 +106,6 @@ canvas {
 footer {
     display: flex;
     justify-content: center;
-    align-items: flex-end;
     margin-top: auto;
     padding: 15px;
 }
