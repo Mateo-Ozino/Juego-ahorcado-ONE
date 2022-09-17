@@ -4,6 +4,7 @@ const botonGuardarPalabra = document.querySelector('#guardarPalabra');
 const botonCancelar =  document.querySelector('#cancelar')
 const contenedorPalabras =  document.querySelector('#contenedorPalabras')
 const seccionIngresoPalabra = document.querySelector('#seccionIngresoPalabra')
+const seccionListaPalabras = document.querySelector('#seccionListaPalabras');
 
 //*Agregar Palabra
 botonGuardarPalabra.addEventListener('click', () => {
@@ -27,9 +28,20 @@ botonCancelar.addEventListener('click', () => {
 
 //*Seccion Agregar palabra
 let listaActualizada = JSON.parse(localStorage.getItem('lista'))
+console.log(listaActualizada)
 
-contenedorPalabras.innerHTML = `
-    <div>
-        ${listaActualizada}
-    </div>
-`
+// let listaDom = document.createElement('p');
+// seccionListaPalabras.appendChild(listaDom);
+// listaDom.innerHTML = `
+// <p>${listaActualizada}</p>
+// `;
+
+listaActualizada.forEach(element => {
+    contenedorPalabras.innerHTML += `
+    <p>${element.toUpperCase()}</p>
+    `;
+});
+
+// contenedorPalabras.innerHTML = `
+//     <p>${listaActualizada}</p>
+// `

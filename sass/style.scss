@@ -5,6 +5,7 @@
 
 html {
     height: 100%;
+    overflow-y: hidden;
 }
 
 * {
@@ -19,22 +20,151 @@ img {
 }
 
 body {
-    min-height: 100%;
+    height: 100%;
     background-color: #EFF1FA;
     font-family: 'Montserrat', sans-serif;
+    background-color: #e5e5f7;
+    opacity: 1;
+    background-image: radial-gradient(#444cf7 0.75px, transparent 0.75px),
+        radial-gradient(#444cf7 0.75px, #e5e5f7 0.75px);
+    background-size: 30px 30px;
+    background-position: 0 0, 15px 15px;
     header {
         margin: .5rem 0 0 .5rem;
     }
     main {
-        margin: 1rem;
+        min-height: calc(100% - 6.5rem);
+        @include flex(column, center, center, 0);
         #seccionPrincipal {
             @include flex(column, center, center, 1rem);
+            justify-self: center;
         }
+        #seccionJuego {
+            @include flex(column, center, center, 2.5rem);
+            .juego-contenido {
+                @include flex(column, center, center, 3rem);
+                canvas {
+                    transform: scale(1.4);
+                }
+                > div {
+                    @include flex(column, center, center, 1.5rem);
+                    #letrasUsadas {
+                        letter-spacing: 2px;
+                        font-weight: 600;
+                        font-size: 25px;
+                    }
+                    #letrasCorrectas {
+                        @include flex(row, center, center, 2rem);
+                        font-weight: 600;
+                        font-size: 25px;
+                        .guion {
+                            width: 45px;
+                            border-bottom: 4px solid #0A3871;
+                            text-align: center;
+                        }
+                    }
+                    #palabraCorrecta {
+                        letter-spacing: 1.5px;
+                        font-size: 26px;
+                    }
+                }
+            }
+            .juego-botones {
+                @include flex(row, center, center, 1.5rem);
+                .boton-nuevo-juego {
+                    font-size: 24px;
+                    min-width: 130px;
+                    height: 40px;
+                    color: #fff;
+                    padding: 5px 10px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    position: relative;
+                    display: inline-block;
+                    outline: none;
+                    border-radius: 5px;
+                    border: none;
+                    background: #0A3871;
+                    box-shadow: 0 5px #051D3B;
+                    &:hover {
+                        box-shadow: 0 3px #051D3B;
+                        top: 1px;
+                    }
+                    &:active {
+                        box-shadow: 0 0 #051D3B;
+                        top: 5px;
+                    }
+                }
+                .boton-desistir {
+                    @extend .boton-nuevo-juego;
+                    background-color: transparent;
+                    border: solid 2px #051D3B;
+                    color: #051D3B;
+                    box-shadow: gray;
+                }
+            }
+        }
+        #seccionNuevaPalabra {
+            @include flex(row, space-around, center, 2rem);
+            #seccionIngresoPalabra {
+                @include flex(column, center, center, 3rem);
+                #nuevaPalabra {
+                    font-size: 24px;
+                    border: none;
+                    border-radius: 5px;
+                    padding: 5px;
+                    text-align: center;
+                    outline: none;
+                    background-color: #EFF1FA;
+                }
+                .info-botones {
+                    @include flex(column, center, center, .5rem);
+                    :first-child {
+                        @include flex(row, center, center, .3rem);
+                    }
+                    :last-child {
+                        @include flex(row, center, center, 2rem);
+                        .boton-guardar {
+                            @extend .boton-principal;
+                            width: 240px;
+                        }
+                        .boton-cancelar {
+                            @extend .boton-secundario;
+                            width: fit-content !important;
+                        }
+                    }
+                }
+            }
+            #seccionListaPalabras {
+                @include flex(column, center, center, 2rem);
+                width: 35%;
+                background-color: #EFF1FA;
+                border-radius: 15px;
+                padding: 15px;
+                #contenedorPalabras {
+                    @include flex(row, center, center, 10px);
+                    flex-wrap: wrap;
+                    font-weight: 600;
+                    font-size: 22px;
+                    line-height: 25px;
+                    p {
+                        padding-left: 5px;
+                    }
+                }
+            }
+        }
+    }
+    footer {
+        height: 10%;
+        width: 100%;
+        @include flex(row, center, center, 1rem);
     }
 }
 
 .boton-principal {
-    min-width: 160px;
+    font-size: 22px;
+    min-width: 180px;
     color: #fff;
     padding: 15px 20px 15px 20px;
     font-weight: bold;
@@ -52,9 +182,9 @@ body {
         content: "\00BB";
         position: absolute;
         opacity: 0;
-        font-size: 20px;
+        font-size: 24px;
         line-height: 40px;
-        top: 3.5px;
+        top: 7px;
         right: -20px;
         transition: 0.4s;
     }
@@ -71,41 +201,15 @@ body {
 
 .boton-secundario {
     @extend .boton-principal;
-    width: 200px;
+    width: 220px;
     background-color: transparent;
     border: solid 1px #0A3871;
     color: #0A3871;
     &:after {
-        top: 3.5px;
+        top: 7.7px;
     }
 }
 
 .hidden {
-    display: none;
-}
-
-canvas {
-    width: 400px;
-}
-
-#letrasUsadas {
-    margin: 1rem 1rem 1rem 5px;
-}
-
-#letrasCorrectas {
-    display: flex;
-    gap: 2rem;
-    text-align: center;
-}
-
-.guion {
-    width: 50px;
-    border-bottom: 3px solid black;
-}
-
-footer {
-    display: flex;
-    justify-content: center;
-    margin-top: auto;
-    padding: 15px;
+    visibility: hidden;
 }

@@ -24,8 +24,6 @@ let ctx = canvas.getContext('2d');
 function dibujarHorca() {
     ctx.fillStyle = '#462501';
     ctx.fillRect(64,9,26,237);
-    //ctx.fillRect(175,193,26,53);
-    //ctx.fillRect(64,193,136,15);
     ctx.fillRect(64,5,155,15);
     ctx.beginPath();
     ctx.moveTo(64,65);
@@ -86,7 +84,7 @@ function dibujarPierna(pierna) {
 
 function dibujarOjos() {
     ctx.fillStyle = 'black';
-    ctx.font = '15px Arial';
+    ctx.font = '800 13px Arial';
     ctx.fillText('X', 180, 72);
     ctx.fillText('X', 195, 72);
 }
@@ -140,9 +138,7 @@ function juegoPerdido() {
 
 function agregarLetraUsada() {
     contenedorLetrasUsadas.innerHTML = `
-    <p>
-        ${letrasUsadas}
-    </p>
+    ${letrasUsadas}
     `;
 }
 
