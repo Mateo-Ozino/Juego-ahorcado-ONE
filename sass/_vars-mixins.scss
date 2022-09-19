@@ -1,3 +1,6 @@
+$colorPrincipal: #0A3871;
+$colorSecundario: #051D3B;
+
 @mixin flex($flex-direction, $justify-content, $align-items, $gap) {
     display: flex;
     flex-direction: $flex-direction;

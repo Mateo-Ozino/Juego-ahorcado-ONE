@@ -1,8 +1,8 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@500&display=swap");
 html {
   height: 100%;
-  overflow-y: hidden;
 }
 
 * {
@@ -17,7 +17,12 @@ img {
 }
 
 body {
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0rem;
+  min-height: 100%;
   background-color: #EFF1FA;
   font-family: "Montserrat", sans-serif;
   background-color: #e5e5f7;
@@ -26,11 +31,28 @@ body {
   background-size: 30px 30px;
   background-position: 0 0, 15px 15px;
 }
+body::-webkit-scrollbar {
+  width: 12px;
+  background: #051D3B;
+}
+body::-webkit-scrollbar-thumb {
+  background: #0A3871;
+  border-radius: 13px;
+}
 body header {
-  margin: 0.5rem 0 0 0.5rem;
+  margin-top: 2rem;
+}
+body header h1 {
+  font-size: 55px;
+  font-family: "Exo 2", sans-serif;
+  background: linear-gradient(90deg, rgb(5, 29, 59) 0%, rgb(15, 81, 163) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-align: center;
 }
 body main {
-  min-height: calc(100% - 6.5rem);
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,9 +65,9 @@ body main #seccionPrincipal {
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  justify-self: center;
 }
 body main #seccionJuego {
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -57,10 +79,10 @@ body main #seccionJuego .juego-contenido {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 3rem;
+  gap: 0.8rem;
 }
 body main #seccionJuego .juego-contenido canvas {
-  transform: scale(1.4);
+  width: 25rem;
 }
 body main #seccionJuego .juego-contenido > div {
   display: flex;
@@ -73,6 +95,8 @@ body main #seccionJuego .juego-contenido > div #letrasUsadas {
   letter-spacing: 2px;
   font-weight: 600;
   font-size: 25px;
+  text-transform: capitalize;
+  user-select: none;
 }
 body main #seccionJuego .juego-contenido > div #letrasCorrectas {
   display: flex;
@@ -82,15 +106,13 @@ body main #seccionJuego .juego-contenido > div #letrasCorrectas {
   gap: 2rem;
   font-weight: 600;
   font-size: 25px;
+  text-transform: capitalize;
+  user-select: none;
 }
 body main #seccionJuego .juego-contenido > div #letrasCorrectas .guion {
   width: 45px;
   border-bottom: 4px solid #0A3871;
   text-align: center;
-}
-body main #seccionJuego .juego-contenido > div #palabraCorrecta {
-  letter-spacing: 1.5px;
-  font-size: 26px;
 }
 body main #seccionJuego .juego-botones {
   display: flex;
@@ -130,12 +152,30 @@ body main #seccionJuego .juego-botones .boton-desistir {
   color: #051D3B;
   box-shadow: gray;
 }
+body main #seccionJuego #palabraCorrecta {
+  width: 45%;
+  height: 45%;
+  position: absolute;
+  z-index: 1;
+  letter-spacing: 1.5px;
+  font-size: 26px;
+  transition: all 1s ease;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+body main #seccionJuego #palabraCorrecta p {
+  text-align: center;
+}
 body main #seccionNuevaPalabra {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 4rem;
+  padding: 20px;
 }
 body main #seccionNuevaPalabra #seccionIngresoPalabra {
   display: flex;
@@ -145,13 +185,18 @@ body main #seccionNuevaPalabra #seccionIngresoPalabra {
   gap: 3rem;
 }
 body main #seccionNuevaPalabra #seccionIngresoPalabra #nuevaPalabra {
-  font-size: 24px;
+  font-size: 26px;
   border: none;
   border-radius: 5px;
-  padding: 5px;
+  padding: 10px;
   text-align: center;
   outline: none;
   background-color: #EFF1FA;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+body main #seccionNuevaPalabra #seccionIngresoPalabra #nuevaPalabra:focus {
+  border-color: #0A3871;
+  box-shadow: 0 0 0 0.25rem #0A3871;
 }
 body main #seccionNuevaPalabra #seccionIngresoPalabra .info-botones {
   display: flex;
@@ -180,6 +225,13 @@ body main #seccionNuevaPalabra #seccionIngresoPalabra .info-botones :last-child 
 body main #seccionNuevaPalabra #seccionIngresoPalabra .info-botones :last-child .boton-cancelar {
   width: fit-content !important;
 }
+body main #seccionNuevaPalabra #seccionIngresoPalabra > p {
+  font-size: 21px;
+  background-color: #EFF1FA;
+  border-radius: 15px;
+  padding: 10px;
+  text-align: center;
+}
 body main #seccionNuevaPalabra #seccionListaPalabras {
   display: flex;
   flex-direction: column;
@@ -189,7 +241,10 @@ body main #seccionNuevaPalabra #seccionListaPalabras {
   width: 35%;
   background-color: #EFF1FA;
   border-radius: 15px;
-  padding: 15px;
+  padding: 20px;
+}
+body main #seccionNuevaPalabra #seccionListaPalabras h2 {
+  text-align: center;
 }
 body main #seccionNuevaPalabra #seccionListaPalabras #contenedorPalabras {
   display: flex;
@@ -206,13 +261,34 @@ body main #seccionNuevaPalabra #seccionListaPalabras #contenedorPalabras p {
   padding-left: 5px;
 }
 body footer {
-  height: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem;
   width: 100%;
+  text-align: center;
+  background-color: rgba(128, 128, 128, 0.425);
+}
+body footer .footer-div-2 i {
+  font-size: 1.5rem;
+  color: rgb(0, 0, 0);
+  transition: all 0.3s ease;
+}
+body footer .footer-div-2 i:hover {
+  transform: translateY(-3px);
+  filter: drop-shadow(5px 5px rgba(101, 100, 149, 0.4549019608));
+  color: rgb(255, 255, 255);
+}
+body footer .footer-div-2 ul {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  list-style: none;
+  margin-bottom: 0;
 }
 
 .boton-principal, .boton-secundario, body main #seccionNuevaPalabra #seccionIngresoPalabra .info-botones :last-child .boton-cancelar, body main #seccionNuevaPalabra #seccionIngresoPalabra .info-botones :last-child .boton-guardar {
@@ -254,15 +330,189 @@ body footer {
 .boton-secundario, body main #seccionNuevaPalabra #seccionIngresoPalabra .info-botones :last-child .boton-cancelar {
   width: 220px;
   background-color: transparent;
-  border: solid 1px #0A3871;
-  color: #0A3871;
+  border: solid 1px #051D3B;
+  color: #051D3B;
 }
 .boton-secundario:after, body main #seccionNuevaPalabra #seccionIngresoPalabra .info-botones :last-child .boton-cancelar:after {
   top: 7.7px;
 }
 
+.palabra-correcta-estilo {
+  background-color: #EFF1FA;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.fade-in {
+  animation-name: fade-in;
+  animation-duration: 1s;
+}
+
 .hidden {
   visibility: hidden;
+}
+
+@keyframes fade-in {
+  from {
+    display: none;
+  }
+  to {
+    display: block;
+  }
+}
+@media only screen and (min-width: 320px) {
+  body main #seccionJuego {
+    padding: 10px 0;
+  }
+  body main #seccionJuego .juego-contenido canvas {
+    width: 15rem;
+  }
+  body main #seccionJuego .juego-contenido > div #letrasCorrectas {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    font-size: 18px;
+  }
+  body main #seccionJuego .juego-contenido > div #letrasCorrectas .guion {
+    width: 25px;
+  }
+  body main #seccionJuego #palabraCorrecta {
+    text-align: center;
+    width: 90%;
+  }
+  body main #seccionJuego .juego-botones {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  body main #seccionNuevaPalabra {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  body main #seccionNuevaPalabra #seccionIngresoPalabra {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  body main #seccionNuevaPalabra #seccionIngresoPalabra .info-botones :last-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  body main #seccionNuevaPalabra #seccionListaPalabras {
+    width: 90%;
+  }
+  body footer {
+    margin-top: 1rem;
+  }
+}
+@media only screen and (min-width: 425px) {
+  body main #seccionJuego {
+    padding: 0;
+    padding-bottom: 15px;
+  }
+  body main #seccionJuego .juego-contenido canvas {
+    width: 18rem;
+  }
+  body main #seccionJuego .juego-contenido > div #letrasCorrectas {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    font-size: 19px;
+  }
+  body main #seccionJuego .juego-contenido > div #letrasCorrectas .guion {
+    width: 30px;
+  }
+  body main #seccionJuego #palabraCorrecta {
+    width: 75%;
+  }
+  body main #seccionNuevaPalabra #seccionIngresoPalabra .info-botones :last-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+@media only screen and (min-width: 768px) {
+  body main #seccionJuego .juego-contenido canvas {
+    width: 20rem;
+  }
+  body main #seccionJuego .juego-contenido > div #letrasCorrectas {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 25px;
+  }
+  body main #seccionJuego .juego-contenido > div #letrasCorrectas .guion {
+    width: 45px;
+  }
+  body main #seccionJuego .juego-botones {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  body main #seccionNuevaPalabra {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  body main #seccionNuevaPalabra #seccionIngresoPalabra {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  body main #seccionNuevaPalabra #seccionIngresoPalabra .info-botones :last-child {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  body main #seccionNuevaPalabra #seccionListaPalabras {
+    width: 90%;
+  }
+  body main #seccionNuevaPalabra #seccionListaPalabras h2 {
+    text-align: center;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  body main #seccionJuego #palabraCorrecta {
+    width: 45%;
+  }
+  body main #seccionNuevaPalabra {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  body main #seccionNuevaPalabra #seccionListaPalabras {
+    width: 45%;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

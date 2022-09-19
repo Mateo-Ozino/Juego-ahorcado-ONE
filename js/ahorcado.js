@@ -1,15 +1,13 @@
 const regExp = /^[a-z !ñ]+$/;
 
-const seccionJuego = document.querySelector('#seccionJuego');
-
-//*Seccion juego
+//*Elementos del DOM
 const contenedorLetrasUsadas = document.querySelector('#letrasUsadas');
 const contenedorLetrasCorrectas = document.querySelector('#letrasCorrectas');
 const contenedorPalabraCorrecta = document.querySelector('#palabraCorrecta')
 const botonNuevoJuego = document.querySelector('#nuevoJuego');
 const botonDesistir = document.querySelector('#desistir');
 
-//*Seccion juego
+//*Event Listeners
 botonNuevoJuego.addEventListener('click', () => {
     location.reload();
 });
@@ -93,6 +91,7 @@ function dibujarOjos() {
 dibujarHorca();
 
 //!Juego
+//Inicializo las variables necesarias
 const maxIntentos = 6;
 let letrasUsadas;
 let intentos;
@@ -107,7 +106,8 @@ const palabraRandom = () => {
     palabraSeleccionada = palabra.split('');
 };
 
-//*Funciones del juego
+//* Funciones del juego *//
+
 function crearGuiones(palabra) {
     for (let i = 0; i < palabra.length; i++) {
         contenedorLetrasCorrectas.innerHTML += `
@@ -120,29 +120,42 @@ function crearGuiones(palabra) {
 
 function juegoGanado() {
     document.removeEventListener('keydown', f);
+    contenedorPalabraCorrecta.classList.add('palabra-correcta-estilo', 'fade-in');
     contenedorPalabraCorrecta.innerHTML = `
     <p>
         Ganaste🥳🥳
     </p>
-    `
+    `;
+    setTimeout( () => {
+        contenedorPalabraCorrecta.classList.remove('fade-in');
+        contenedorPalabraCorrecta.style.opacity = '0';
+    }, 3000);
 }
 
 function juegoPerdido() {
     document.removeEventListener('keydown', f);
+    contenedorPalabraCorrecta.classList.add('palabra-correcta-estilo', 'fade-in');
     contenedorPalabraCorrecta.innerHTML = `
     <p>
         Perdiste 😥. La palabra correcta era <strong>${palabraSeleccionada.join('').toUpperCase()}</strong>
     </p>
-    `
+    `;
+    setTimeout( () => {
+        contenedorPalabraCorrecta.classList.remove('fade-in');
+        contenedorPalabraCorrecta.style.opacity = '0';
+    }, 3000);
 }
 
+//Muestra las letras usadas
 function agregarLetraUsada() {
     contenedorLetrasUsadas.innerHTML = `
     ${letrasUsadas}
     `;
 }
 
+//Funcion que comprueba si la letra ingresada es correcta o no. Cada caso tiene su respectivo proceso
 function comprobacion(letraIngresada, contenedoresLetras) {
+    //Si la letra ingresada es correcta se muestra la misma y suma un acierto
     if (palabraSeleccionada.includes(letraIngresada)) {
         contenedoresLetras.forEach((contenedor) => {
             letras = contenedor.children;
@@ -151,8 +164,10 @@ function comprobacion(letraIngresada, contenedoresLetras) {
                 aciertos++;
             }
         });
+        //Si se descubre la palabra completa el jugador gana
         if (aciertos === palabraSeleccionada.length) juegoGanado();
     } else {
+        //Cada vez que el jugador ingrese una letra correcta se dibuja una parte del ahorcado
         intentos++;
         switch (intentos) {
             case 1:
@@ -176,12 +191,15 @@ function comprobacion(letraIngresada, contenedoresLetras) {
             default:
                 break;
         }
+        //Una vez que se dibuje el ahorcado completo el jugador pierde
         if (intentos === maxIntentos) juegoPerdido();
     }
+    //Control de letras ya usadas. Quita la posibilidad de repetir letras
     letrasUsadas.push(letraIngresada);
     agregarLetraUsada(letraIngresada);
 }
 
+//Funcion que controla el ingreso de las letras ("sanitiza" las letras ingresadas por teclado)
 function ingresoLetra(e, contenedoresLetras) {
     let letraIngresada = e.key;
     if (letraIngresada.match(regExp) && !letrasUsadas.includes(letraIngresada)) {
@@ -194,7 +212,9 @@ function juego() {
     intentos = 0;
     aciertos = 0;
     letrasUsadas = [];
+    //Genero la palabra
     palabraRandom();
+    //Creo los guiones y los coloco segun la posicion de cada letra. También coloco las respectivas letras en su lugar  y las oculto
     crearGuiones(palabraSeleccionada);
     let contenedoresLetras = document.querySelectorAll('.guion');
     contenedoresLetras.forEach((contenedor, i) => {
@@ -202,6 +222,7 @@ function juego() {
         letras[0].innerHTML = palabraSeleccionada[i];
         letras[0].classList.toggle('hidden');
     })
+    //Evento que va a desencadenar todas las funciones
     document.addEventListener('keydown', f = (e) => {
         ingresoLetra(e, contenedoresLetras);
     });

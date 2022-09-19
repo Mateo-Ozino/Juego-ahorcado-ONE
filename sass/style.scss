@@ -1,11 +1,11 @@
+//Importo las variables y los mixins
 @import 'vars-mixins';
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@500&display=swap');
 
 html {
     height: 100%;
-    overflow-y: hidden;
 }
 
 * {
@@ -20,7 +20,16 @@ img {
 }
 
 body {
-    height: 100%;
+    &::-webkit-scrollbar {
+        width: 12px;
+        background: $colorSecundario;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: $colorPrincipal;
+        border-radius: 13px;
+    }
+    @include flex(column, space-between, center, 0rem);
+    min-height: 100%;
     background-color: #EFF1FA;
     font-family: 'Montserrat', sans-serif;
     background-color: #e5e5f7;
@@ -30,21 +39,30 @@ body {
     background-size: 30px 30px;
     background-position: 0 0, 15px 15px;
     header {
-        margin: .5rem 0 0 .5rem;
+        margin-top: 2rem;
+        h1 {
+            font-size: 55px;
+            font-family: 'Exo 2', sans-serif;
+            background: linear-gradient(90deg, rgba(5,29,59,1) 0%, rgba(15,81,163,1) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-align: center;
+        }
     }
     main {
-        min-height: calc(100% - 6.5rem);
+        margin-top: 1rem;
         @include flex(column, center, center, 0);
         #seccionPrincipal {
             @include flex(column, center, center, 1rem);
-            justify-self: center;
         }
         #seccionJuego {
+            padding: 1rem;
             @include flex(column, center, center, 2.5rem);
             .juego-contenido {
-                @include flex(column, center, center, 3rem);
+                @include flex(column, center, center, .8rem);
                 canvas {
-                    transform: scale(1.4);
+                    width: 25rem;
                 }
                 > div {
                     @include flex(column, center, center, 1.5rem);
@@ -52,20 +70,20 @@ body {
                         letter-spacing: 2px;
                         font-weight: 600;
                         font-size: 25px;
+                        text-transform: capitalize;
+                        user-select: none;
                     }
                     #letrasCorrectas {
                         @include flex(row, center, center, 2rem);
                         font-weight: 600;
                         font-size: 25px;
+                        text-transform: capitalize;
+                        user-select: none;
                         .guion {
                             width: 45px;
                             border-bottom: 4px solid #0A3871;
                             text-align: center;
                         }
-                    }
-                    #palabraCorrecta {
-                        letter-spacing: 1.5px;
-                        font-size: 26px;
                     }
                 }
             }
@@ -85,38 +103,57 @@ body {
                     outline: none;
                     border-radius: 5px;
                     border: none;
-                    background: #0A3871;
-                    box-shadow: 0 5px #051D3B;
+                    background: $colorPrincipal;
+                    box-shadow: 0 5px $colorSecundario;
                     &:hover {
-                        box-shadow: 0 3px #051D3B;
+                        box-shadow: 0 3px $colorSecundario;
                         top: 1px;
                     }
                     &:active {
-                        box-shadow: 0 0 #051D3B;
+                        box-shadow: 0 0 $colorSecundario;
                         top: 5px;
                     }
                 }
                 .boton-desistir {
                     @extend .boton-nuevo-juego;
                     background-color: transparent;
-                    border: solid 2px #051D3B;
-                    color: #051D3B;
+                    border: solid 2px $colorSecundario;
+                    color: $colorSecundario;
                     box-shadow: gray;
+                }
+            }
+            #palabraCorrecta {
+                width: 45%;
+                height: 45%;
+                position: absolute;
+                z-index: 1;
+                letter-spacing: 1.5px;
+                font-size: 26px;
+                transition: all 1s ease;
+                @include flex(row, center, center, 0);
+                p {
+                    text-align: center;
                 }
             }
         }
         #seccionNuevaPalabra {
-            @include flex(row, space-around, center, 2rem);
+            @include flex(row, center, center, 4rem);
+            padding: 20px;
             #seccionIngresoPalabra {
                 @include flex(column, center, center, 3rem);
                 #nuevaPalabra {
-                    font-size: 24px;
+                    font-size: 26px;
                     border: none;
                     border-radius: 5px;
-                    padding: 5px;
+                    padding: 10px;
                     text-align: center;
                     outline: none;
                     background-color: #EFF1FA;
+                    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+                    &:focus {
+                        border-color: $colorPrincipal;
+                        box-shadow: 0 0 0 0.25rem $colorPrincipal;
+                    }
                 }
                 .info-botones {
                     @include flex(column, center, center, .5rem);
@@ -135,13 +172,23 @@ body {
                         }
                     }
                 }
+                >p {
+                    font-size: 21px;
+                    background-color: #EFF1FA;
+                    border-radius: 15px;
+                    padding: 10px;
+                    text-align: center;
+                }
             }
             #seccionListaPalabras {
                 @include flex(column, center, center, 2rem);
                 width: 35%;
                 background-color: #EFF1FA;
                 border-radius: 15px;
-                padding: 15px;
+                padding: 20px;
+                h2 {
+                    text-align: center;
+                }
                 #contenedorPalabras {
                     @include flex(row, center, center, 10px);
                     flex-wrap: wrap;
@@ -156,11 +203,32 @@ body {
         }
     }
     footer {
-        height: 10%;
+        @include flex(column, center, center, .5rem);
+        padding: .7rem;
         width: 100%;
-        @include flex(row, center, center, 1rem);
+        text-align: center;
+        background-color: rgba(128, 128, 128, 0.425);
+        .footer-div-2 {
+            i {
+                font-size: 1.5rem;
+                color: rgb(0, 0, 0);
+                transition: all .3s ease;
+                &:hover{
+                    transform: translateY(-3px);
+                    filter: drop-shadow(5px 5px #65649574);
+                    color: rgb(255, 255, 255);
+                }
+            }
+            ul {
+                @include flex(row, center, center, 1rem);
+                list-style: none;
+                margin-bottom: 0;
+            }
+        }
     }
 }
+
+//Clases de uso general que no necesitan ir indentadas.
 
 .boton-principal {
     font-size: 22px;
@@ -177,7 +245,7 @@ body {
     border-radius: 5px;
     border: none;
     // background-color: #3d348b;
-    background-color: #0A3871;
+    background-color: $colorPrincipal;
     &:after {
         content: "\00BB";
         position: absolute;
@@ -203,13 +271,37 @@ body {
     @extend .boton-principal;
     width: 220px;
     background-color: transparent;
-    border: solid 1px #0A3871;
-    color: #0A3871;
+    border: solid 1px $colorSecundario;
+    color: $colorSecundario;
     &:after {
         top: 7.7px;
     }
 }
 
+
+.palabra-correcta-estilo {
+    background-color: #EFF1FA;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.fade-in {
+    animation-name: fade-in;
+    animation-duration: 1s;
+}
+
 .hidden {
     visibility: hidden;
 }
+
+@keyframes fade-in {
+    from {
+        display: none;
+    }
+    to {
+        display: block;
+    }
+}
+
+//Importo las media queries
+@import 'media';

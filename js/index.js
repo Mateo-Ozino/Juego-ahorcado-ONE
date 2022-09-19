@@ -1,4 +1,3 @@
-//*Seccion principal
 const botonIniciarJuego = document.querySelector('#iniciarJuego');
 const botonAgregarPalabra = document.querySelector('#agregarPalabra');
 
@@ -10,8 +9,7 @@ if (!localStorage.getItem('lista')) {
     localStorage.setItem('lista', JSON.stringify(listaPalabras))
 }
 
-//!Event listeners
-//*Principal
+//*Event listeners
 botonIniciarJuego.addEventListener('click', () => {
     document.location.href = 'pages/ahorcado.html'
 });

@@ -1,0 +1,149 @@
+@import 'vars-mixins';
+
+@media only screen and (min-width: 320px) {
+    body {
+        main {
+            #seccionJuego {
+                padding: 10px 0;
+                .juego-contenido {
+                    canvas {
+                        width: 15rem;
+                    }
+                    > div {
+                        #letrasCorrectas {
+                            @include flex(row, center, center, 1rem);
+                            font-size: 18px;
+                            .guion {
+                                width: 25px;
+                            }
+                        }
+                    }
+                }
+                #palabraCorrecta {
+                    text-align: center;
+                    width: 90%;
+                }
+                .juego-botones {
+                    @include flex(column, center, center, 1rem);
+                }
+            }
+            #seccionNuevaPalabra {
+                margin-top: 1rem;
+                @include flex(column, center, center, 1.5rem);
+                #seccionIngresoPalabra {
+                    @include flex(column, center, center, 1.5rem);
+                    .info-botones {
+                        :last-child {
+                            @include flex(column, center, center, 1rem);
+                        }
+                    }
+                }
+                #seccionListaPalabras {
+                    width: 90%;
+                }
+            }
+        }
+        footer {
+            margin-top: 1rem;
+        }
+    }
+}
+
+@media only screen and (min-width: 425px) {
+    body {
+        main {
+            #seccionJuego {
+                padding: 0;
+                padding-bottom: 15px;
+                .juego-contenido {
+                    canvas {
+                        width: 18rem;
+                    }
+                    > div {
+                        #letrasCorrectas {
+                            @include flex(row, center, center, 1rem);
+                            font-size: 19px;
+                            .guion {
+                                width: 30px;
+                            }
+                        }
+                    }
+                }
+                #palabraCorrecta {
+                    width: 75%;
+                }
+            }
+            #seccionNuevaPalabra {
+                #seccionIngresoPalabra {
+                    .info-botones {
+                        :last-child {
+                            @include flex(column, center, center, 1rem);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    body {
+        main {
+            #seccionJuego {
+                .juego-contenido {
+                    canvas {
+                        width: 20rem;
+                    }
+                    > div {
+                        #letrasCorrectas {
+                            @include flex(row, center, center, 1.5rem);
+                            font-size: 25px;
+                            .guion {
+                                width: 45px;
+                            }
+                        }
+                    }
+                }
+                .juego-botones {
+                    @include flex(column, center, center, 1rem);
+                }
+            }
+            #seccionNuevaPalabra {
+                margin-top: 1rem;
+                @include flex(column, center, center, 1.5rem);
+                #seccionIngresoPalabra {
+                    @include flex(column, center, center, 1.5rem);
+                    .info-botones {
+                        :last-child {
+                            @include flex(row, center, center, 1rem);
+                        }
+                    }
+                }
+                #seccionListaPalabras {
+                    width: 90%;
+                    h2 {
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1024px)  {
+    body {
+        main {
+            #seccionJuego {
+                #palabraCorrecta {
+                    width: 45%;
+                }
+            }
+            #seccionNuevaPalabra {
+                @include flex(row, center, center, 1.5rem);
+                #seccionListaPalabras {
+                    width: 45%;
+                }
+            }
+        }
+    }
+}
