@@ -26,6 +26,9 @@
                 .juego-botones {
                     @include flex(column, center, center, 1rem);
                 }
+                .info {
+                    font-size: 18px;
+                }
             }
             #seccionNuevaPalabra {
                 margin-top: 1rem;
@@ -72,6 +75,9 @@
                 #palabraCorrecta {
                     width: 75%;
                 }
+                .info {
+                    font-size: 18px;
+                }
             }
             #seccionNuevaPalabra {
                 #seccionIngresoPalabra {
@@ -106,6 +112,9 @@
                 }
                 .juego-botones {
                     @include flex(column, center, center, 1rem);
+                }
+                .info {
+                    font-size: 20px;
                 }
             }
             #seccionNuevaPalabra {

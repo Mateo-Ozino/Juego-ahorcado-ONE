@@ -72,7 +72,7 @@ body main #seccionJuego {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2.5rem;
+  gap: 2rem;
 }
 body main #seccionJuego .juego-contenido {
   display: flex;
@@ -120,6 +120,7 @@ body main #seccionJuego .juego-botones {
   justify-content: center;
   align-items: center;
   gap: 1.5rem;
+  padding-top: 2rem;
 }
 body main #seccionJuego .juego-botones .boton-nuevo-juego, body main #seccionJuego .juego-botones .boton-desistir {
   font-size: 24px;
@@ -156,6 +157,7 @@ body main #seccionJuego #palabraCorrecta {
   width: 45%;
   height: 45%;
   position: absolute;
+  top: 10px;
   z-index: 1;
   letter-spacing: 1.5px;
   font-size: 26px;
@@ -168,6 +170,16 @@ body main #seccionJuego #palabraCorrecta {
 }
 body main #seccionJuego #palabraCorrecta p {
   text-align: center;
+}
+body main #seccionJuego .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+  font-weight: 500;
+  font-family: "Exo 2", sans-serif;
 }
 body main #seccionNuevaPalabra {
   display: flex;
@@ -211,6 +223,11 @@ body main #seccionNuevaPalabra #seccionIngresoPalabra .info-botones :first-child
   justify-content: center;
   align-items: center;
   gap: 0.3rem;
+}
+body main #seccionNuevaPalabra #seccionIngresoPalabra .info-botones :first-child p {
+  text-align: center;
+  font-weight: 500;
+  font-family: "Exo 2", sans-serif;
 }
 body main #seccionNuevaPalabra #seccionIngresoPalabra .info-botones :last-child {
   display: flex;
@@ -389,6 +406,9 @@ body footer .footer-div-2 ul {
     align-items: center;
     gap: 1rem;
   }
+  body main #seccionJuego .info {
+    font-size: 18px;
+  }
   body main #seccionNuevaPalabra {
     margin-top: 1rem;
     display: flex;
@@ -440,6 +460,9 @@ body footer .footer-div-2 ul {
   body main #seccionJuego #palabraCorrecta {
     width: 75%;
   }
+  body main #seccionJuego .info {
+    font-size: 18px;
+  }
   body main #seccionNuevaPalabra #seccionIngresoPalabra .info-botones :last-child {
     display: flex;
     flex-direction: column;
@@ -469,6 +492,9 @@ body footer .footer-div-2 ul {
     justify-content: center;
     align-items: center;
     gap: 1rem;
+  }
+  body main #seccionJuego .info {
+    font-size: 20px;
   }
   body main #seccionNuevaPalabra {
     margin-top: 1rem;
